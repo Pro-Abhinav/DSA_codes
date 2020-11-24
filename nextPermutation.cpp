@@ -1,8 +1,8 @@
-#include<iostream>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-void printArray(int *ar, int siz)
+void printArray(vector<int>& ar, int siz)
 {
     for(int i=0;i<siz;i++)
     {
@@ -10,55 +10,50 @@ void printArray(int *ar, int siz)
     }
 }
 
-void revereseArray(int arr[], int start, int end)
+void chk_greater(vector<int>& arr, int siz)
 {
-    while (start < end)
-    {
-        int temp = arr[start];
-        arr[start] = arr[end];
-        arr[end] = temp;
-        start++;
-        end--;
-    }
-}
 
-void chk_greater(int *ar, int siz)
-{
-    if(siz<=1)
-        return;
-    int pivot =0;
-    for(int i=siz-2;i>=0;i--)
-    {
-        if(ar[i]<ar[i+1])
-        {
-            pivot = i;
-            break;
+     // if items less than 2
+        if(arr.size() <= 1) return;
+
+        int i;
+        for(i = arr.size() - 2; i >= 0; i--){
+            if(arr[i] < arr[i+1])
+                break;
         }
-    }
-    int minm = ar[pivot+1]-ar[pivot];
-    int rev = pivot+1;
-    for(int i=pivot;i<siz;i++)
-    {
-        if(minm>=(ar[i]-ar[pivot])&&(ar[i]-ar[pivot])>=0&&ar[i])
-            rev = i;
-    }
 
-    int temp = ar[pivot];
-    ar[pivot] = ar[rev];
-    ar[rev] = temp;
+        //if no decreasing element is found then no permutation
+        //is possible return the first permutation
 
-    cout<<pivot<<siz-1;
-    //printArray(ar,siz);
-    revereseArray(ar, pivot+1, siz-1);
+        if(i < 0){
+            sort(arr.begin(), arr.end());
+            return;
+        }
 
-    printArray(ar, siz);
+        //near most element of i that is bigger than i.
+
+        int j = arr.size() - 1;
+        while( j >= 0 && arr[j] <= arr[i]) j--;
+
+        //swap i, j
+
+        swap(arr[i], arr[j]);
+
+        //till this result in forming the last combination of arrangement starting from j
+        //now make the smallest permutaion by reversing this.
+
+        j = arr.size() - 1;
+        while(++i < j){
+            swap(arr[i], arr[j--]);
+        }
+        printArray(arr, siz);
 }
 
 
 
 int main()
 {
-    int ar[] = {2,3,1,3,3};
+    vector<int> ar{1,4,3};
     int siz = sizeof(ar)/sizeof(ar[0]);
 
     chk_greater(ar, siz);
