@@ -22,7 +22,7 @@ void mergeInterval(Interval *ar, int siz)
         if(ar[index].e >= ar[i].s)
         {
             ar[index].e = max(ar[index].e, ar[i].e);
-            ar[index].s = max(ar[index].s, ar[i].s);
+            ar[index].s = min(ar[index].s, ar[i].s);
         }
         else{
             index++;
@@ -39,7 +39,7 @@ void mergeInterval(Interval *ar, int siz)
 
 int main()
 {
-    Interval ar[] = { {6,8}, {1,9}, {2,4}, {4,7} };
+    Interval ar[] = { {6,8}, {4,9}, {2,4}, {4,7} };
     int siz = sizeof(ar)/sizeof(ar[0]);
 
     mergeInterval(ar, siz);
