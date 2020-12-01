@@ -17,7 +17,7 @@ int checkArray(int *ar, int siz)
 
 int main()
 {
-    int ar[] = {1,2,3,5,-20,6,3,5};
+    int ar[] = {-6,-4,10,2,-1,5};
     int siz = sizeof(ar)/sizeof(ar[0]);
 
     cout<<"Largest sum of the contiguous subarray is: "<<checkArray(ar, siz);
