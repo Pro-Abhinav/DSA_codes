@@ -26,8 +26,8 @@ void fnd_sbarray(int *ar, int siz, int num)
 
 int main()
 {
-    int ar[] = {3,1,9,1,1,2};
-    int num = 18;
+    int ar[] = {10,2,1,11,0,4,12};
+    int num = 12;
     int siz = sizeof(ar)/sizeof(ar[0]);
 
     fnd_sbarray(ar, siz, num);
